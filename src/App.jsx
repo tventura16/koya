@@ -5,12 +5,12 @@ import { FaMapMarkerAlt, FaYoutube, FaCamera, FaEnvelope, FaWhatsapp } from 'rea
 
 function App() {
   const galleryImages = [
-    { id: 1, src: '/img/streetview_large.jpg', alt: 'Hacienda La Koya - Vista principal desde Street View' },
-    { id: 2, src: '/img/streetview6_large.jpg', alt: 'Hacienda La Koya - Sexta vista desde Street View' },
-    { id: 3, src: '/img/streetview2_large.jpg', alt: 'Hacienda La Koya - Vista alternativa desde Street View' },
-    { id: 4, src: '/img/streetview3_large.jpg', alt: 'Hacienda La Koya - Tercera vista desde Street View' },
-    { id: 5, src: '/img/streetview4_large.jpg', alt: 'Hacienda La Koya - Cuarta vista desde Street View' },
-    { id: 6, src: '/img/streetview5_large.jpg', alt: 'Hacienda La Koya - Quinta vista desde Street View' },
+    { id: 1, src: 'img/streetview_large.jpg', alt: 'Hacienda La Koya - Vista principal desde Street View' },
+    { id: 2, src: 'img/streetview6_large.jpg', alt: 'Hacienda La Koya - Sexta vista desde Street View' },
+    { id: 3, src: 'img/streetview2_large.jpg', alt: 'Hacienda La Koya - Vista alternativa desde Street View' },
+    { id: 4, src: 'img/streetview3_large.jpg', alt: 'Hacienda La Koya - Tercera vista desde Street View' },
+    { id: 5, src: 'img/streetview4_large.jpg', alt: 'Hacienda La Koya - Cuarta vista desde Street View' },
+    { id: 6, src: 'img/streetview5_large.jpg', alt: 'Hacienda La Koya - Quinta vista desde Street View' },
   ];
 
   return (
@@ -22,7 +22,7 @@ function App() {
         <section 
           id="inicio" 
           className="relative text-white py-32 bg-cover bg-center"
-          style={{ backgroundImage: `url('/img/streetview_large.jpg')` }}
+          style={{ backgroundImage: `url('img/streetview_large.jpg')` }}
         >
           <div className="absolute inset-0 bg-black/60"></div>
           <div className="relative z-10 container mx-auto px-4 text-center">
