@@ -1,22 +1,55 @@
-import React from 'react';
-import { FaMapMarkerAlt, FaYoutube, FaImages, FaEnvelope } from 'react-icons/fa';
+import React, { useState } from 'react';
+
+const navLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#ubicacion', label: 'Ubicación' },
+  { href: '#videos', label: 'Videos' },
+  { href: '#galeria', label: 'Galería' },
+  { href: '#contacto', label: 'Contacto' },
+];
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="bg-green-800 text-white py-4 shadow-md">
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Hacienda La Koya</h1>
-        <nav className="hidden md:flex space-x-6">
-          <a href="#inicio" className="hover:text-green-200 transition">Inicio</a>
-          <a href="#ubicacion" className="hover:text-green-200 transition">Ubicación</a>
-          <a href="#videos" className="hover:text-green-200 transition">Videos</a>
-          <a href="#galeria" className="hover:text-green-200 transition">Galería</a>
-          <a href="#contacto" className="hover:text-green-200 transition">Contacto</a>
+    <header className="bg-white border-b border-zinc-200 sticky top-0 z-50">
+      <div className="container mx-auto px-6 h-16 flex justify-between items-center">
+        <span className="text-zinc-900 font-semibold tracking-wide text-lg">Hacienda La Koya</span>
+        <nav className="hidden md:flex space-x-8">
+          {navLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors"
+            >
+              {label}
+            </a>
+          ))}
         </nav>
-        <button className="md:hidden text-2xl">
-          <FaMapMarkerAlt />
+        <button
+          className="md:hidden text-zinc-500 hover:text-zinc-900"
+          onClick={() => setOpen(!open)}
+          aria-label="Menú"
+        >
+          <span className="block w-5 h-px bg-current mb-1"></span>
+          <span className="block w-5 h-px bg-current mb-1"></span>
+          <span className="block w-5 h-px bg-current"></span>
         </button>
       </div>
+      {open && (
+        <nav className="md:hidden border-t border-zinc-100 bg-white">
+          {navLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setOpen(false)}
+              className="block px-6 py-3 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 };

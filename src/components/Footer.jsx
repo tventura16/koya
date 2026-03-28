@@ -1,39 +1,39 @@
 import React from 'react';
-import { FaMapMarkerAlt, FaYoutube, FaImages, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaYoutube, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-green-900 text-white py-8 mt-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-zinc-900 text-zinc-400 py-12 mt-0">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-zinc-800">
           <div>
-            <h3 className="text-xl font-bold mb-4">Hacienda La Koya</h3>
-            <p className="text-green-200">Un lugar mágico en el corazón de Bolivia.</p>
+            <p className="text-zinc-100 font-semibold mb-2">Hacienda La Koya</p>
+            <p className="text-sm">Un lugar mágico en el corazón de Bolivia.</p>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
-            <ul className="space-y-2">
-              <li><a href="#inicio" className="hover:text-green-200 transition">Inicio</a></li>
-              <li><a href="#ubicacion" className="hover:text-green-200 transition">Ubicación</a></li>
-              <li><a href="#videos" className="hover:text-green-200 transition">Videos</a></li>
-              <li><a href="#galeria" className="hover:text-green-200 transition">Galería</a></li>
+            <p className="text-xs uppercase tracking-widest text-zinc-500 mb-4">Secciones</p>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#inicio" className="hover:text-zinc-100 transition-colors">Inicio</a></li>
+              <li><a href="#ubicacion" className="hover:text-zinc-100 transition-colors">Ubicación</a></li>
+              <li><a href="#videos" className="hover:text-zinc-100 transition-colors">Videos</a></li>
+              <li><a href="#galeria" className="hover:text-zinc-100 transition-colors">Galería</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
-            <div className="flex space-x-4">
-              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-green-200 transition">
+            <p className="text-xs uppercase tracking-widest text-zinc-500 mb-4">Contacto</p>
+            <div className="flex space-x-4 text-xl">
+              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-100 transition-colors">
                 <FaYoutube />
               </a>
-              <a href="#contacto" className="text-2xl hover:text-green-200 transition">
+              <a href="#contacto" className="hover:text-zinc-100 transition-colors">
                 <FaEnvelope />
               </a>
             </div>
           </div>
         </div>
-        <div className="border-t border-green-700 mt-8 pt-6 text-center text-green-300">
-          <p>© {new Date().getFullYear()} Hacienda La Koya. Hecho con <FaHeart className="inline text-red-500" /> en Bolivia.</p>
-        </div>
+        <p className="text-center text-xs text-zinc-600 mt-8">
+          © {new Date().getFullYear()} Hacienda La Koya · Bolivia
+        </p>
       </div>
     </footer>
   );
