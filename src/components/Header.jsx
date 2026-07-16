@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#ubicacion', label: 'Ubicación' },
-  { href: '#videos', label: 'Videos' },
+  { href: '#historia', label: 'Historia' },
   { href: '#galeria', label: 'Galería' },
+  { href: '#videos', label: 'Videos' },
   { href: '#contacto', label: 'Contacto' },
 ];
 
@@ -31,7 +31,7 @@ const Header = () => {
         <a href="#inicio" className="text-zinc-900 font-semibold tracking-wide text-lg focus:outline-none focus:underline">
           Hacienda La Koya
         </a>
-        <nav className="hidden md:flex space-x-8" aria-label="Navegación principal">
+        <nav className="hidden md:flex space-x-6" aria-label="Navegación principal">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}

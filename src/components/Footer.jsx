@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaYoutube, FaEnvelope } from 'react-icons/fa';
+import { FaYoutube, FaEnvelope, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+
+const WHATSAPP_LINK = 'https://wa.me/59163460134';
 
 const Footer = () => {
   return (
@@ -14,18 +16,27 @@ const Footer = () => {
             <p className="text-xs uppercase tracking-widest text-zinc-500 mb-4">Secciones</p>
             <ul className="space-y-2 text-sm">
               <li><a href="#inicio" className="hover:text-zinc-100 transition-colors">Inicio</a></li>
+              <li><a href="#historia" className="hover:text-zinc-100 transition-colors">Historia</a></li>
+              <li><a href="#gastronomia" className="hover:text-zinc-100 transition-colors">Gastronomía</a></li>
               <li><a href="#ubicacion" className="hover:text-zinc-100 transition-colors">Ubicación</a></li>
               <li><a href="#videos" className="hover:text-zinc-100 transition-colors">Videos</a></li>
               <li><a href="#galeria" className="hover:text-zinc-100 transition-colors">Galería</a></li>
+              <li><a href="#faq" className="hover:text-zinc-100 transition-colors">FAQ</a></li>
             </ul>
           </div>
           <div>
             <p className="text-xs uppercase tracking-widest text-zinc-500 mb-4">Contacto</p>
             <div className="flex space-x-4 text-xl">
-              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-100 transition-colors">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-100 transition-colors" aria-label="WhatsApp">
+                <FaWhatsapp />
+              </a>
+              <a href="https://www.tiktok.com/@quesero68" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-100 transition-colors" aria-label="TikTok">
+                <FaTiktok />
+              </a>
+              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-100 transition-colors" aria-label="YouTube">
                 <FaYoutube />
               </a>
-              <a href="#contacto" className="hover:text-zinc-100 transition-colors">
+              <a href="#contacto" className="hover:text-zinc-100 transition-colors" aria-label="Email">
                 <FaEnvelope />
               </a>
             </div>
