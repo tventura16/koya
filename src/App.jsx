@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { FaMapMarkerAlt, FaYoutube, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
@@ -13,11 +13,41 @@ function App() {
     { id: 6, src: 'img/streetview5_large.jpg', alt: 'Hacienda La Koya - Quinta vista desde Street View' },
   ];
 
+  const [formData, setFormData] = useState({ nombre: '', email: '', mensaje: '', honeypot: '' });
+  const [formErrors, setFormErrors] = useState({});
+  const [formStatus, setFormStatus] = useState(null);
+
+  const validateForm = () => {
+    const errors = {};
+    if (formData.honeypot) return errors;
+    if (!formData.nombre.trim()) errors.nombre = 'El nombre es obligatorio.';
+    if (!formData.email.trim()) {
+      errors.email = 'El email es obligatorio.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Ingresa un email válido.';
+    }
+    if (!formData.mensaje.trim()) errors.mensaje = 'El mensaje es obligatorio.';
+    return errors;
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+    setFormStatus('success');
+    setFormData({ nombre: '', email: '', mensaje: '', honeypot: '' });
+    setTimeout(() => setFormStatus(null), 5000);
+  };
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      <a href="#contenido" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-zinc-900 focus:text-white focus:px-4 focus:py-2 focus:z-50 focus:text-sm">
+        Saltar al contenido
+      </a>
       <Header />
 
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow">
         {/* Hero */}
         <section
           id="inicio"
@@ -126,6 +156,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-zinc-300 text-zinc-600 px-6 py-2.5 text-sm hover:border-zinc-800 hover:text-zinc-900 transition-colors"
+                aria-label="Más videos en YouTube"
               >
                 <FaYoutube />
                 Más videos en YouTube
@@ -145,6 +176,7 @@ function App() {
                   <img
                     src={image.src}
                     alt={image.alt}
+                    loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition duration-500"
                   />
                 </div>
@@ -188,7 +220,19 @@ function App() {
                 </div>
               </div>
               <div>
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleFormSubmit} noValidate>
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex="-1"
+                      autoComplete="off"
+                      value={formData.honeypot}
+                      onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                    />
+                  </div>
                   <div>
                     <label htmlFor="nombre" className="block text-xs uppercase tracking-widest text-zinc-400 mb-1.5">
                       Nombre
@@ -197,9 +241,13 @@ function App() {
                       type="text"
                       id="nombre"
                       name="nombre"
-                      className="w-full px-4 py-2.5 border border-zinc-200 bg-white text-zinc-800 text-sm focus:outline-none focus:border-zinc-500 transition-colors"
+                      required
+                      value={formData.nombre}
+                      onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                      className={`w-full px-4 py-2.5 border bg-white text-zinc-800 text-sm focus:outline-none focus:border-zinc-500 transition-colors ${formErrors.nombre ? 'border-red-400' : 'border-zinc-200'}`}
                       placeholder="Tu nombre"
                     />
+                    {formErrors.nombre && <p className="text-red-500 text-xs mt-1">{formErrors.nombre}</p>}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-xs uppercase tracking-widest text-zinc-400 mb-1.5">
@@ -209,9 +257,13 @@ function App() {
                       type="email"
                       id="email"
                       name="email"
-                      className="w-full px-4 py-2.5 border border-zinc-200 bg-white text-zinc-800 text-sm focus:outline-none focus:border-zinc-500 transition-colors"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className={`w-full px-4 py-2.5 border bg-white text-zinc-800 text-sm focus:outline-none focus:border-zinc-500 transition-colors ${formErrors.email ? 'border-red-400' : 'border-zinc-200'}`}
                       placeholder="tu@email.com"
                     />
+                    {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
                   </div>
                   <div>
                     <label htmlFor="mensaje" className="block text-xs uppercase tracking-widest text-zinc-400 mb-1.5">
@@ -221,9 +273,13 @@ function App() {
                       id="mensaje"
                       name="mensaje"
                       rows="4"
-                      className="w-full px-4 py-2.5 border border-zinc-200 bg-white text-zinc-800 text-sm focus:outline-none focus:border-zinc-500 transition-colors resize-none"
+                      required
+                      value={formData.mensaje}
+                      onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
+                      className={`w-full px-4 py-2.5 border bg-white text-zinc-800 text-sm focus:outline-none focus:border-zinc-500 transition-colors resize-none ${formErrors.mensaje ? 'border-red-400' : 'border-zinc-200'}`}
                       placeholder="Escribe tu mensaje aquí..."
                     ></textarea>
+                    {formErrors.mensaje && <p className="text-red-500 text-xs mt-1">{formErrors.mensaje}</p>}
                   </div>
                   <button
                     type="submit"
@@ -231,6 +287,9 @@ function App() {
                   >
                     Enviar Mensaje
                   </button>
+                  {formStatus === 'success' && (
+                    <p className="text-green-600 text-sm text-center">¡Mensaje enviado correctamente!</p>
+                  )}
                 </form>
               </div>
             </div>
